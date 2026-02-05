@@ -1,0 +1,8 @@
+pageTabId,sectionId,sectionLabel,charts,objectId1,objectId2
+performance_metrics,vol_rate,Volume & Rate Metrics,2,RPYmq,FHzhu,gNXFhm
+performance_metrics,vol_trend,Volume & Rate Trend Metrics,2,PCJJpDr,ZFmu
+market_access,market_share,Market Share Metrics,2,ZFmu,jCqJWum
+adhoc,growth,Growth Metrics,1,RPYmq
+detail_reports,detail_trend,Detail Trend Metrics,2,PCJJpDr,FHzhu
+call_activity,call_trend,Call Trend Metrics,2,PCJJpDr,gNXFhm
+
