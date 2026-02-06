@@ -6,17 +6,64 @@ export default function PageTabs() {
   const { activeHeader, resetPageTab, activePageTab, setPageTab } = useHeaderStore();
   const [tabs, setTabs] = useState<{id:string,label:string}[]>([]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   fetch('/page-tabs.csv')
+  //     .then(r => r.text())
+  //     .then(t => {
+  //       const rows = t.split('\n').slice(1).filter(Boolean);
+  //       const parsed = rows.map(r => {
+  //         const [id,label,headerId] = r.split(',');
+  //         return { id, label, headerId };
+  //       }).filter(t => t.headerId === activeHeader);
+  //       setTabs(parsed);
+  //       if (parsed.length) resetPageTab(parsed[0].id);
+  //     });
+  // }, [activeHeader]);
+
+//   useEffect(() => {
+//   fetch('/page-tabs.csv')
+//     .then(r => r.text())
+//     .then(t => {
+//       const rows = t.split('\n').slice(1).filter(Boolean);
+//       const parsed = rows
+//         .map(r => {
+//           const [id, label, headerId] = r.split(',');
+//           return { id, label, headerId };
+//         })
+//         .filter(t => t.headerId === activeHeader);
+
+//       setTabs(parsed);
+
+//       // ✅ only set default if none selected
+//       if (!activePageTab && parsed.length) {
+//         setPageTab(parsed[0].id);
+//       }
+//     });
+// }, [activeHeader]);
+
+   useEffect(() => {
     fetch('/page-tabs.csv')
       .then(r => r.text())
       .then(t => {
         const rows = t.split('\n').slice(1).filter(Boolean);
-        const parsed = rows.map(r => {
-          const [id,label,headerId] = r.split(',');
-          return { id, label, headerId };
-        }).filter(t => t.headerId === activeHeader);
+
+        const parsed = rows
+          .map(r => {
+            const [id, label, headerId] = r.split(',');
+            return {
+              id: id.trim(),
+              label: label.trim(),
+              headerId: headerId.trim(),
+            };
+          })
+          .filter(t => t.headerId === activeHeader);
+
         setTabs(parsed);
-        if (parsed.length) resetPageTab(parsed[0].id);
+
+        //  Reset ONLY if current tab is not part of this header
+        if (parsed.length && !parsed.find(t => t.id === activePageTab)) {
+          resetPageTab(parsed[0].id);
+        }
       });
   }, [activeHeader]);
 

@@ -22,6 +22,7 @@ export default function Header() {
     <header className="h-16 bg-blue-600 text-white flex items-center justify-between px-6">
       <h1 className="font-semibold">Franchise Analytics</h1>
       <nav className="flex gap-6 text-sm">
+
         {tabs.map(t => (
           <button
             key={t.id}
@@ -31,6 +32,7 @@ export default function Header() {
             {t.label}
           </button>
         ))}
+        
       </nav>
     </header>
   );
