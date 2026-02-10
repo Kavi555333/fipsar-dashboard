@@ -41,7 +41,7 @@ jobs:
 
             Regards,
             GitHub Actions
-          to: steynarunkavi@gmail.com
+          to: arunkavi@fipsar.com
           from: steynarunkavi@gmail.com
 
       # FAILURE EMAIL
@@ -67,5 +67,5 @@ jobs:
             Regards,
             GitHub Actions
           to: steynarunkavi@gmail.com
-          from: GitHub Actions
+          from: steynarunkavi@gmail.com
 
