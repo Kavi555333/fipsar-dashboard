@@ -42,7 +42,7 @@ jobs:
             Regards,
             GitHub Actions
           to: steynarunkavi@gmail.com
-          from: GitHub Actions
+          from: steynarunkavi@gmail.com
 
       # FAILURE EMAIL
       - name: Send failure email
@@ -66,6 +66,6 @@ jobs:
 
             Regards,
             GitHub Actions
-          to: steynarunkavi@example.com
+          to: steynarunkavi@gmail.com
           from: GitHub Actions
 
