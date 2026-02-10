@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -87,6 +86,7 @@ export default function Sections() {
                       <QlikChart
                         appId={APP_ID}
                         objectId={section.objectId1}
+                         theme="breeze"
                       />
                     </div>
                   )}

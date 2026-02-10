@@ -1,39 +1,58 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useHeaderStore } from './store';
 
-export default function Header() {
-  const [tabs, setTabs] = useState<{id:string,label:string}[]>([]);
+type HeaderTab = {
+  id: string;
+  label: string;
+  order: number;
+};
+
+export default function HeaderTabs() {
   const { activeHeader, setHeader } = useHeaderStore();
+  const [headers, setHeaders] = useState<HeaderTab[]>([]);
 
   useEffect(() => {
     fetch('/header-tabs.csv')
-      .then(r => r.text())
-      .then(t => {
+      .then((r) => r.text())
+      .then((t) => {
         const rows = t.split('\n').slice(1).filter(Boolean);
-        setTabs(rows.map(r => {
-          const [id,label] = r.split(',');
-          return { id, label };
-        }));
+
+        const parsed = rows
+          .map((r) => {
+            const [id, label, order] = r.split(',');
+            return {
+              id: id.trim(),
+              label: label.trim(),
+              order: Number(order),
+            };
+          })
+          .sort((a, b) => a.order - b.order);
+
+        setHeaders(parsed);
       });
   }, []);
 
   return (
-    <header className="h-16 bg-blue-600 text-white flex items-center justify-between px-6">
-      <h1 className="font-semibold">Franchise Analytics</h1>
-      <nav className="flex gap-6 text-sm">
+    <div className="flex gap-8 px-6 bg-blue-600 text-white h-16 items-center">
+      <h1 className="font-bold text-lg">Franchise Analytics</h1>
 
-        {tabs.map(t => (
+      <div className="flex gap-6 ml-auto">
+        {headers.map((h) => (
           <button
-            key={t.id}
-            onClick={() => setHeader(t.id)}
-            className={activeHeader === t.id ? 'border-b-2 border-white pb-1' : 'opacity-80'}
+            key={h.id}
+            onClick={() => setHeader(h.id)}
+            className={`pb-1 ${
+              activeHeader === h.id
+                ? 'border-b-2 border-white font-semibold'
+                : 'opacity-80 hover:opacity-100'
+            }`}
           >
-            {t.label}
+            {h.label}
           </button>
         ))}
-        
-      </nav>
-    </header>
+      </div>
+    </div>
   );
 }

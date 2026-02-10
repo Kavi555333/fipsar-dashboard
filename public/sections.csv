@@ -2,6 +2,18 @@ pageTabId,sectionId,sectionLabel,charts,objectId1,objectId2
 performance_metrics,vol_rate,Volume & Rate Metrics,2,RPYmq,FHzhu,gNXFhm
 performance_metrics,vol_trend,Volume & Rate Trend Metrics,2,PCJJpDr,ZFmu
 market_access,market_share,Market Share Metrics,2,ZFmu,jCqJWum
-adhoc,growth,Growth Metrics,1,RPYmq
+adhoc,growth,Growth Metrics,3,Bmvsu
 detail_reports,detail_trend,Detail Trend Metrics,2,PCJJpDr,FHzhu
-call_activity,call_trend,Call Trend Metrics,2,PCJJpDr,gNXFhm
+call_activity,call_trend,Call Trend Metrics,2,TfLwWmy,jCqJWum,gNXFhm
+executive_metrics,exec_overview,Executive Overview Metrics,2,FHzhu,Bmvsu
+executive_access,exec_access,Executive Access Metrics,2,PCJJpDr,TfLwWmy
+executive_reports,exec_reports,Executive Report Metrics,2,Qjtm,FHzhu
+analytics_metrics,analytics_overview,Analytics Overview Metrics,2,jCqJWum,RPYmq
+analytics_access,analytics_access,Analytics Access Metrics,2,Qjtm,jCqJWum
+analytics_reports,analytics_report,Analytics Report Metrics,2,PCJJpDr,Bmvsu
+diagnostic_metrics,diagnostic_overview,Diagnostic Overview Metrics,2,TfLwWmy,gNXFhm
+diagnostic_access,diagnostic_access,Diagnostic Access Metrics,2,Qjtm,TfLwWmy
+diagnostic_reports,diagnostic_report,Diagnostic Report Metrics,2,PCJJpDr,jCqJWum
+polaris_metrics,polaris_overview,Polaris 2.0 Overview Metrics,2,PCJJpDr,RPYmq
+polaris_access,polaris_access,Polaris 2.0 Access Metrics,2,TfLwWmy,ELmRvPj
+polaris_reports,polaris_report,Polaris 2.0 Report Metrics,2,FHzhu,Qjtm

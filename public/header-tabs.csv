@@ -1,6 +1,6 @@
-id,label
-performance,Performance
-executive,Executive
-analytics,Analytics
-diagnostic,Diagnostic Analytics - CE Only
-polaris,Polaris 2.0 
+id,label,order
+performance,Performance,1
+executive,Executive,2
+analytics,Analytics,3
+diagnostic,Diagnostic Analytics - CE Only,4
+polaris,Polaris 2.0 ,5
