@@ -1,0 +1,71 @@
+name: Build on Push to Master
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      # SUCCESS EMAIL
+      - name: Send success email
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "✅ Build Successful"
+          body: |
+            Hi Team,
+
+            The build completed successfully on the master branch.
+
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+
+            Regards,
+            GitHub Actions
+          to: arunkavi@fipsar.com
+          from: steynarunkavi@gmail.com
+
+      # FAILURE EMAIL
+      - name: Send failure email
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "❌ Build Failed"
+          body: |
+            Hi Team,
+
+            The build FAILED on the master branch.
+
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+
+            Please check GitHub Actions logs.
+
+            Regards,
+            GitHub Actions
+          to: steynarunkavi@gmail.com
+          from: steynarunkavi@gmail.com
+
