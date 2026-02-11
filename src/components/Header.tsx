@@ -36,7 +36,7 @@ export default function HeaderTabs() {
 
   return (
     <div className="flex gap-8 px-6 bg-blue-600 text-white h-16 items-center">
-      <h1 className="font-bold text-lg">Franchise Analytics</h1>
+      <h1 className="font-bold text-lg">Fipsar Analytics</h1>
 
       <div className="flex gap-6 ml-auto">
         {headers.map((h) => (
