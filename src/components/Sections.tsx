@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useHeaderStore } from './store'
 import QlikChart from '../components/QlikChart'   // ← import the wrapper
+// import QlikObjectWithMenu from '../components/QlikChartApi' // ← import the API-based component;
+import QlikObjectWithMenu from '../components/QlikChartApi'
 
 type Section = {
   pageTabId: string
@@ -93,15 +95,35 @@ export default function Sections() {
 
                   {/* Chart 2 (optional) */}
                   {section.charts > 1 && section.objectId2 && (
-                    <div className="h-[300px] bg-gray-50 border rounded-md p-2">
-                      <QlikChart
-                        appId={APP_ID}
-                        objectId={section.objectId2}
-                      />
-                    </div>
+                    // <div className="h-[300px] bg-gray-50 border rounded-md p-2">
+                    //   <QlikChart
+                    //     appId={APP_ID}
+                    //     objectId={section.objectId2}
+                    //   />
+                    // </div>
+
+                    // <div>
+                    //     {/* <QlikObjectWithMenu
+                    //       appId={APP_ID}
+                    //       objectId={section.objectId2}
+                    //       height="600px"  // Optional: customize height
+                    //       width="100%"    // Optional: customize width
+                    //     /> */}
+                        // </div>
+
+                        <QlikObjectWithMenu
+  appId={APP_ID}
+  objectId={section.objectId1}
+/>
+
                   )}
                 </div>
               )}
+
+
+               
+
+               {/* <iframe src="https://w9mj1mv1plu5dod.in.qlikcloud.com/single/?appid=f310dfba-704d-4c21-ae47-4865725ee67e&obj=RPYmq&theme=horizon&opt=ctxmenu,currsel" className="w-full h-96 border-0"></iframe> */}
             </div>
           )
         })}
