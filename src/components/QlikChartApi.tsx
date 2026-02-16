@@ -280,10 +280,13 @@
 
 
 'use client'
-
+import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
-import { QlikEmbed } from '@qlik/embed-react'
 import { MoreVertical, Download, Table, BarChart3 } from 'lucide-react'
+const QlikEmbed = dynamic(
+  () => import('@qlik/embed-react').then(mod => mod.QlikEmbed),
+  { ssr: false }
+)
 
 type Props = {
   appId: string
