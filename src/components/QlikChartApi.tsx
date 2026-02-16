@@ -275,7 +275,7 @@
 //   );
 // };
 
-// export default QlikObjectWithMenu; 
+// export default QlikObjectWithMenu;
 
 
 
@@ -287,20 +287,27 @@ import { MoreVertical, Download, Table, BarChart3 } from 'lucide-react'
 
 type Props = {
   appId: string
-  objectId: string
+  chartObjectId: string
+  tableObjectId: string
   height?: string
   width?: string
 }
 
 export default function QlikObjectWithMenu({
   appId,
-  objectId,
+  chartObjectId,
+  tableObjectId,
   height = '300px',
   width = '100%',
 }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [viewMode, setViewMode] = useState<'chart' | 'table'>('chart')
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const currentObjectId =
+    viewMode === 'chart'
+      ? chartObjectId
+      : tableObjectId
 
   // Close menu on outside click
   useEffect(() => {
@@ -316,7 +323,7 @@ export default function QlikObjectWithMenu({
   const handleDownload = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_QLIK_TENANT}/api/v1/apps/${appId}/objects/${objectId}/data/export`,
+        `${process.env.NEXT_PUBLIC_QLIK_TENANT}/api/v1/apps/${appId}/objects/${currentObjectId}/data/export`,
         {
           headers: {
             'qlik-web-integration-id':
@@ -330,7 +337,7 @@ export default function QlikObjectWithMenu({
 
       const a = document.createElement('a')
       a.href = url
-      a.download = `${objectId}.csv`
+      a.download = `${currentObjectId}.csv`
       a.click()
 
       window.URL.revokeObjectURL(url)
@@ -354,7 +361,6 @@ export default function QlikObjectWithMenu({
           <MoreVertical size={18} />
         </button>
 
-        {/* Animated Dropdown */}
         {menuOpen && (
           <div className="absolute right-0 mt-2 w-44 bg-white border rounded shadow-lg transition-all animate-in fade-in zoom-in-95">
             <button
@@ -389,19 +395,12 @@ export default function QlikObjectWithMenu({
       </div>
 
       {/* Qlik Object Rendering */}
-      {viewMode === 'chart' ? (
-        <QlikEmbed
-          ui="analytics/chart"
-          appId={appId}
-          objectId={objectId}
-        />
-      ) : (
-        <QlikEmbed
-          ui="analytics/table"
-          appId={appId}
-          objectId={objectId}
-        />
-      )}
+      <QlikEmbed
+        ui="analytics/chart"
+        appId={appId}
+        objectId={currentObjectId}
+      />
     </div>
   )
 }
+

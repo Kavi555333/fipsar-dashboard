@@ -1,6 +1,6 @@
 id,label,order
-performance,Performance,1
-executive,Executive,2
-analytics,Analytics,3
-diagnostic,Diagnostic Analytics - CE Only,4
-polaris,Polaris 2.0 ,5
+patients,Patients,1
+visitors,Visitors,2
+treatment,Treatment,3
+surgeries,Surgeries Record,4
+survey,Survey,5

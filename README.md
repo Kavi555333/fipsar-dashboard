@@ -1,7 +1,7 @@
-# fipsar-dashboard
-**Fipsar Analytics Dashboard**  
+# medical - dashboard
+**Medical Analytics Dashboard**  
 **Summary:**  
-1.Fipsar Analytics Dashboard is a modern, scalable analytics web application built using **Next.js and Qlik Cloud.**  
+1.Medical Analytics Dashboard is a modern, scalable analytics web application built using **Next.js and Qlik Cloud.**  
 2.The project provides a configurable UI layer over Qlik analytics, allowing business teams to consume insights through a custom-designed dashboard without modifying core UI code.  
 3.The solution follows enterprise best practices for frontend architecture, analytics embedding, and CI/CD deployment.
 

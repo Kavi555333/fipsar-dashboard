@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from 'react'
 import { useHeaderStore } from './store'
-import QlikChart from '../components/QlikChart'   // ← import the wrapper
-// import QlikObjectWithMenu from '../components/QlikChartApi' // ← import the API-based component;
 import QlikObjectWithMenu from '../components/QlikChartApi'
+
+type ChartConfig = {
+  chartObjectId: string
+  tableObjectId: string
+}
 
 type Section = {
   pageTabId: string
-  label: string
-  charts: number
-  objectId1: string
-  objectId2?: string
+  sectionId: string
+  sectionLabel: string
+  charts: ChartConfig[]
 }
 
 const APP_ID = process.env.NEXT_PUBLIC_QLIK_APP_ID!
@@ -26,18 +28,44 @@ export default function Sections() {
       .then(r => r.text())
       .then(text => {
         const rows = text.split('\n').slice(1).filter(Boolean)
-        setSections(
-          rows.map(r => {
-            const [pageTabId, , label, charts, obj1, obj2] = r.split(',')
-            return {
-              pageTabId: pageTabId.trim(),
-              label: label.trim(),
-              charts: Number(charts),
-              objectId1: obj1?.trim(),
-              objectId2: obj2?.trim(),
-            }
-          })
-        )
+
+        const parsedSections: Section[] = rows.map(row => {
+          const [
+            pageTabId,
+            sectionId,
+            sectionLabel,
+            chart,
+            chart1,
+            table1,
+            chart2,
+            table2,
+          ] = row.split(',')
+
+          const charts: ChartConfig[] = []
+
+          if (chart1 && table1) {
+            charts.push({
+              chartObjectId: chart1.trim(),
+              tableObjectId: table1.trim(),
+            })
+          }
+
+          if (chart2 && table2) {
+            charts.push({
+              chartObjectId: chart2.trim(),
+              tableObjectId: table2.trim(),
+            })
+          }
+
+          return {
+            pageTabId: pageTabId.trim(),
+            sectionId: sectionId.trim(),
+            sectionLabel: sectionLabel.trim(),
+            charts,
+          }
+        })
+
+        setSections(parsedSections)
       })
       .catch(err => console.error('Failed to load sections.csv:', err))
   }, [])
@@ -54,7 +82,7 @@ export default function Sections() {
       {sections
         .filter(section => section.pageTabId === activePageTab)
         .map(section => {
-          const sectionKey = `${section.pageTabId}-${section.label}`
+          const sectionKey = `${section.pageTabId}-${section.sectionId}`
           const isCollapsed = collapsedSections[sectionKey]
 
           return (
@@ -64,13 +92,14 @@ export default function Sections() {
             >
               {/* Section Header */}
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-base">{section.label}</h3>
+                <h3 className="font-semibold text-base">
+                  {section.sectionLabel}
+                </h3>
 
-                {/* Toggle Button */}
                 <button
                   onClick={() => toggleSection(sectionKey)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors
-                    ${isCollapsed ? 'bg-gray-300' : 'bg-blue-600'}`}
+                    ${isCollapsed ? 'bg-gray-300' : 'bg-brand-green'}`}
                 >
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform
@@ -79,51 +108,24 @@ export default function Sections() {
                 </button>
               </div>
 
-              {/* Charts Grid (only when expanded) */}
-              {!isCollapsed && (
-                <div className={`grid grid-cols-${section.charts} gap-6`}>
-                  {/* Chart 1 */}
-                  {section.objectId1 && (
-                    <div className="h-[300px] bg-gray-50 border rounded-md p-2">
-                      <QlikChart
-                        appId={APP_ID}
-                        objectId={section.objectId1}
-                         theme="breeze"
-                      />
-                    </div>
-                  )}
-
-                  {/* Chart 2 (optional) */}
-                  {section.charts > 1 && section.objectId2 && (
-                    // <div className="h-[300px] bg-gray-50 border rounded-md p-2">
-                    //   <QlikChart
-                    //     appId={APP_ID}
-                    //     objectId={section.objectId2}
-                    //   />
-                    // </div>
-
-                    // <div>
-                    //     {/* <QlikObjectWithMenu
-                    //       appId={APP_ID}
-                    //       objectId={section.objectId2}
-                    //       height="600px"  // Optional: customize height
-                    //       width="100%"    // Optional: customize width
-                    //     /> */}
-                        // </div>
-
-                        <QlikObjectWithMenu
-  appId={APP_ID}
-  objectId={section.objectId1}
-/>
-
-                  )}
+              {/* Charts Grid */}
+              {!isCollapsed && section.charts.length > 0 && (
+                <div
+                  className="grid gap-6"
+                  style={{
+                    gridTemplateColumns: `repeat(${section.charts.length}, minmax(0, 1fr))`,
+                  }}
+                >
+                  {section.charts.map((chart, index) => (
+                    <QlikObjectWithMenu
+                      key={index}
+                      appId={APP_ID}
+                      chartObjectId={chart.chartObjectId}
+                      tableObjectId={chart.tableObjectId}
+                    />
+                  ))}
                 </div>
               )}
-
-
-               
-
-               {/* <iframe src="https://w9mj1mv1plu5dod.in.qlikcloud.com/single/?appid=f310dfba-704d-4c21-ae47-4865725ee67e&obj=RPYmq&theme=horizon&opt=ctxmenu,currsel" className="w-full h-96 border-0"></iframe> */}
             </div>
           )
         })}

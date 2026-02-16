@@ -35,8 +35,8 @@ export default function HeaderTabs() {
   }, []);
 
   return (
-    <div className="flex gap-8 px-6 bg-blue-600 text-white h-16 items-center">
-      <h1 className="font-bold text-lg">Fipsar Analytics</h1>
+    <div className="flex gap-8 px-6 bg-brand-green text-white h-16 items-center">
+      <h1 className="font-bold text-lg">Medical Analytics</h1>
 
       <div className="flex gap-6 ml-auto">
         {headers.map((h) => (
@@ -46,7 +46,7 @@ export default function HeaderTabs() {
             className={`pb-1 ${
               activeHeader === h.id
                 ? 'border-b-2 border-white font-semibold'
-                : 'opacity-80 hover:opacity-100'
+                : 'hover:opacity-100'
             }`}
           >
             {h.label}
