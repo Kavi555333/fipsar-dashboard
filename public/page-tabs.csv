@@ -1,18 +1,18 @@
 id,label,headerId
-performance_metrics,Performance Metrics,performance
-market_access,Market Access Insights,performance
-adhoc,Ad-hoc Analysis,performance
-detail_reports,Detail Reports,performance
-call_activity,Call Activity,performance
-executive_metrics,Executive Metrics,executive
-executive_access,Executive Access,executive
-executive_reports,Executive Reports,executive
-analytics_metrics,Analytics Metrics,analytics
-analytics_access,Analytics Access,analytics
-analytics_reports,Analytics Reports,analytics
-diagnostic_metrics,Diagnostic Metrics,diagnostic
-diagnostic_access,Diagnostic Access,diagnostic
-diagnostic_reports,Diagnostic Reports,diagnostic
-polaris_metrics,Polaris 2.0 Metrics,polaris
-polaris_access,Polaris 2.0 Access,polaris
-polaris_reports,Polaris 2.0 Reports,polaris
+complex,Complex Cases,patients
+noncomplex,Non-Complex Cases,patients
+device,Device Supplied,patients
+compliance,Compliance Monitor,patients
+improvement,Improvement Achieved,patients
+visitor_metrics,Visitors Metrics,visitors
+visitor_access,Visitors Access,visitors
+visitor_reports,Visitors Reports,visitors
+treatment_metrics,Treatment Metrics,treatment
+treatment_access,Treatment Access,treatment
+treatment_reports,Treatment Reports,treatment
+surgeries_metrics,Surgeries Metrics,surgeries
+surgeries_access,Surgeries Access,surgeries
+surgeries_reports,Surgeries Reports,surgeries
+survey_metrics,Survey Metrics,survey
+survey_access,Survey Access,survey
+survey_reports,Survey Reports,survey

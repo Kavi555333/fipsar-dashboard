@@ -10,7 +10,7 @@ type Store = {
 
 export const useHeaderStore = create<Store>((set) => ({
   // default header (must exist in header-tabs.csv)
-  activeHeader: 'performance',
+  activeHeader: 'patients',
 
   // page tab will be set dynamically based on header
   activePageTab: '',
