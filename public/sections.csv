@@ -1,6 +1,6 @@
 pageTabId,sectionId,sectionLabel,charts,chart1,table1,chart2,table2
-complex,new_patient,New Patient Metrics,2,RPYmq,BNWAB,gNXFhm,gNXFhm,KxcBjT
-complex,Growth_trend,Growth  Trend Metrics ,1,PCJJpDr,ZFmu
+complex,new_patient,New Patient Metrics,2,RPYmq,BNWAB,gNXFhm,KxcBjT
+complex,Growth_trend,Growth  Trend Metrics ,1,PCJJpDr,pUVpZZW,ZFmu
 noncomplex,yeal_month_metrix,Yearly & Monthly Metrics,2,ZFmu,jCqJWum
 device,growth,Growth Metrics,1,Bmvsu,PCJJpDr
 compliance,compliance_trend,Compliance Trend Metrics,1,PCJJpDr,FHzhu
