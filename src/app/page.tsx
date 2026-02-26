@@ -1,10 +1,10 @@
 'use client';
-import Sidebar from '../components/Sidebar';
-import KPIBar from '../components/KPIBar';
-import PageTabs from '../components/PageTabs';
-import Sections from '../components/Sections';
+// import Sidebar from '../components/Sidebar';
+// import KPIBar from '../components/KPIBar';
+// import PageTabs from '../components/PageTabs';
+// import Sections from '../components/Sections';
 // import YearSelectionListener from '../components/YearSelctionListener';
-import   Design  from "../components/TechDashbaordDesign"
+import   Design  from "../components/TechDashboardDesign";
 
 export default function Page() {
   return (
