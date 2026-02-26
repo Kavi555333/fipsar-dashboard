@@ -4,7 +4,7 @@
 // import PageTabs from '../components/PageTabs';
 // import Sections from '../components/Sections';
 // import YearSelectionListener from '../components/YearSelctionListener';
-import   Design  from "../components/TechDashboardDesign";
+import   Design  from "../components/TechDasboardDesign.jsx";
 
 export default function Page() {
   return (
