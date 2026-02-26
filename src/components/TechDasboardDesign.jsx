@@ -480,7 +480,7 @@ function Design3({ onTechClick, activeTech, onClose }) {
 }
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
-export default function App() {
+export default function Design() {
   const [design, setDesign] = useState(1);
   const [activeTech, setActiveTech] = useState(null);
 
